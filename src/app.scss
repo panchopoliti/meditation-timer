@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+body {
+    font-family: 'Roboto', 'sans-serif';    
+}
+
+.hide {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.mainContainer {
+    
+    .modalOverlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background: rgba(40,43,49,.8);
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    
+    .showOverlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+}
+
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+
+    .sizeAppButtonContainer {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2em;
+
+        button {
+            background-color: #000;
+            transition: all .2s ease;
+            padding: 10px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            color: #fff;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+            &:hover, &:focus {
+                box-shadow: 0 8px 25px -8px #000;
+            }
+        }
+    }
+
+    .btnsContainer {
+        width: 100%;
+    
+        .buttons {
+            padding: 0.429em 1em;
+            font-family: 'Roboto';
+            font-size: 1.6em;
+            background-color: #dadada;
+            color: #333333;
+            border: 1px solid #dadada;
+            border-radius: 0;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            overflow: visible;
+    
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    
+        .btnSelected {
+            background-color: #007ad9;
+            border-color: #007ad9;
+            color: #ffffff;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+    }
+
+    .hoursInClock button {
+        width: 50%;
+    }
+
+    .clock {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 25px;
+    }
+
+    .belowClockContainer {
+        display: flex;
+        justify-content: space-between;
+
+        .settingsContainer {
+            display: flex;
+            flex-direction: column;
+
+            .settingsLogoBtn {
+                justify-content: flex-end;
+                background-color: transparent;
+                border: 0;
+
+                figure {
+                    margin: 0;
+                }
+                
+                &:hover{
+                    cursor: pointer;
+                }
+    
+                &:hover + .tooltip {
+                    visibility: visible;
+                }
+            }
+            
+            .tooltip {
+                position: relative;
+                background-color: #6c757d;
+                font-size: 0.85em;
+                margin-top: 1em;
+                padding: 0.3em 0.5em;
+                color: #fff;
+                visibility: hidden;
+    
+            }
+
+        }
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+
+    span {
+        font-size: 0.8em;
+        color: #6d6d6d;
+
+        a {
+            text-decoration: none;
+            color: #6d6d6d;
+            cursor: pointer;
+
+            &:visited {
+                color: #6d6d6d;
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 481px) {
+
+    .bigScreenMode {
+
+        .appContainer {
+    
+            .sizeAppButtonContainer {
+    
+                button {
+                    background-color: #fff;
+                    border: 1px #000 solid;
+                    color: #000;
+    
+                    &:hover {
+                        box-shadow: 0 8px 25px -8px #000;
+                    }
+                }
+            } 
+    
+            .btnsContainer {
+            
+                .buttons {
+                    font-size: 2.4em;
+                }
+            }
+        
+            .belowClockContainer {
+    
+                .belowClockContainerInfo {
+                    font-size: 1.5em;
+                }
+                
+                .settingsContainer {
+
+                    .settingsLogoBtn {
+
+                        .settingsLogo {
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+
+                    .tooltip{
+                        font-size: 1.4em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .appContainer {
+        width: 100%;
+
+        .appSubContainer {
+            width: 100%;
+        }
+
+        .sizeAppButtonContainer {
+            display: none;
+        } 
+
+        .btnsContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .buttons {
+                width: 48%;
+            }
+        }
+
+        .belowClockContainer {
+            margin: 0 1em;
+        }
+    }
+}

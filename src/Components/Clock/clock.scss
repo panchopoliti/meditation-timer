@@ -1,0 +1,193 @@
+.hide {
+    display: none;
+}
+
+.hideBtn {
+    font-size: 0em !important; 
+    visibility: hidden;
+}
+
+.hiddenInput {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 0px;
+    border: 0;
+    opacity: 0;
+    z-index: -2;
+}
+
+.clockContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .numbersContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 17px;
+    
+        .numbers {
+            font-size: 2.5em;
+            font-family: 'Roboto';
+            padding: 18px;
+
+            > span {
+                color: #000;
+            }
+
+            .withoutInputValue{
+                color: #aaa;
+            }
+            
+            .defaultSpanColor {
+                cursor: pointer;
+            }
+
+            .activeSpan {
+                border-right: 1px solid #000;
+            }
+    
+        }
+
+        .hoursContainer {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    .clockDefined {
+        cursor: pointer;
+    }
+
+    .titlesContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .titleSpan {
+            padding: 0 20px 25px;
+            font-size: 1.3em;
+        }
+    }
+}
+
+.clockButtonsContainer {
+    display: flex;
+    justify-content: center;
+
+    .clockButtons {
+        padding: 0.429em 1em;
+        font-family: 'Roboto';
+        font-size: 1.2em;
+        background-color: #dadada;
+        color: #333333;
+        border: 1px solid #dadada;
+        border-radius: 50px;
+        transition: transform 1s;
+        transition-delay: 0.1s;
+        cursor: pointer;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .animateToRight {
+        transform: translate(0.9em);
+    }   
+    
+    .animateToLeft {
+        transform: translate(-0.9em);
+    }
+
+    .startButton {
+
+        &:hover, &:focus {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+    }
+
+    .successButton {
+
+        &:hover, &:focus {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+    }
+
+    .warningButton {
+
+        &:hover, &:focus {
+            background-color: #f0ad4e;
+            color: #fff;
+            border-color: #eea236;
+        }   
+    }
+    
+    .dangerButton {
+    
+        &:hover, &:focus {
+            background-color: #ef5858;
+            border-color: #d43f3a;
+            color: #fff;
+        }
+    }
+
+    .notAllow {
+        opacity: 0.5;
+        transition: opacity 500ms ease-out;
+    }
+}
+
+@media screen and (min-width: 481px) {
+
+    .bigScreenMode {
+        .clockContainer {
+        
+            .numbersContainer {
+            
+                .numbers {
+                    font-size: 4em;
+                    font-family: 'Roboto';
+                    padding: 18px;
+                }
+            }
+        
+            .titlesContainer {
+        
+                .titleSpan {
+                    font-size: 2em;
+                }
+            }
+        }
+        
+        .clockButtonsContainer {
+        
+            .clockButtons {
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .numbersContainer {
+
+        .numbers {
+            font-size: 2em;
+        }
+    }
+
+    .titlesContainer {
+
+        .titleSpan {
+            font-size: 1em;
+        }
+    }
+} 
