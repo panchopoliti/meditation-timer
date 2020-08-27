@@ -34,7 +34,7 @@ class Timer extends React.Component {
         const isValidNumber = isNaturalNumber(ev.target.value);
         if (!isValidNumber) return;
         
-        const value = ev.target.value.toString();      
+        const value = ev.target.value.toString();
 
         if (value) {
 
@@ -189,6 +189,7 @@ class Timer extends React.Component {
                     ref={this.inputClockRef}
                     onBlur={this.handleClockEvents}
                     onFocus={this.handleClockEvents}
+                    inputMode='numeric'
                     type='text'
                     onChange={this.onInputChange}
                     className={'hiddenInput'}
