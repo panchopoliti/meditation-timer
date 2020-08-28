@@ -9,6 +9,9 @@ I wanted to create a Progressive Web App that I could share with my meditators c
 
 ## Technologies used
 
+### Web Architecture
+Create React App
+
 ### JS
 React JS
 
@@ -17,3 +20,6 @@ Sass
 
 ### Components
 Material-UI 
+
+## Deployment
+Through Gh-Pages
