@@ -1,5 +1,6 @@
 import React from 'react';
 import Timer from './Components/Clock/Timer.js';
+import { getClosestSecond } from './Components/Clock/clock-functions.js';
 import { default as Stopwatch } from './Components/Clock/Clock.js';
 import './app.scss';
 import AudiosModal from './Components/Modals/AudiosModal.js';
@@ -18,7 +19,11 @@ class App extends React.Component {
             activeTab: 0,
             keyPressedEvent: null,
             bellStarting: false,
-            windowBlur: false,
+            timeOfTabInactivity: {
+                start: null,
+                inactivityInSeconds: null,
+                isTabActive: true,
+            },
             isTimerShowingHours: false,
             isStopwatchShowingHours: false,
             modalClicked: false,
@@ -65,20 +70,47 @@ class App extends React.Component {
         });
     }
 
-    handleWindowFocus = (ev) =>  {
+    handleVisibilityChange = (ev) => {
 
-        if (ev.target === window) {  
-            this.setState({ windowBlur: true });
+        const { timeStamp } = ev || {};
+        const { start: inactivityStart, isTabActive } = this.state.timeOfTabInactivity;
+
+        if (isTabActive) {
+
+            this.setState({
+                timeOfTabInactivity: {
+                    start: timeStamp,
+                    inactivityInSeconds: null,
+                    isTabActive: false,
+                },
+            });
+
+            return;
         }
+
+        const timeOfInactivityInMs = timeStamp - inactivityStart;
+
+        const timeOfInactivityInSeconds = getClosestSecond(timeOfInactivityInMs / 1000)
+
+        this.setState({
+            timeOfTabInactivity: {
+                start: null,
+                inactivityInSeconds: timeOfInactivityInSeconds,
+                isTabActive: true,
+            },
+        });
+        
 
     }
     
     componentDidMount() {
         document.addEventListener('keydown', this.onBodyKeydown);
+        document.addEventListener('visibilitychange', this.handleVisibilityChange);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.onBodyKeydown);
+        document.removeEventListener('visibilitychange', this.handleVisibilityChange);
     }
  
     componentDidUpdate(prevProps, prevState) {
@@ -104,6 +136,7 @@ class App extends React.Component {
             modalClicked,
             modalSelectValue,
             showAppInBig,
+            timeOfTabInactivity,
         } = this.state;
 
         const showTimer = (!activeTab);
@@ -160,6 +193,7 @@ class App extends React.Component {
                                             minutes={10} 
                                             seconds={0}
                                             hoursDisplayedInClock={hoursBeingDisplayed(true)}
+                                            timeInactivity={timeOfTabInactivity}
                                             ariaIdForContainer={'Clock 1'}
                                         />
                                     </div>
@@ -172,6 +206,7 @@ class App extends React.Component {
                                             seconds={0}
                                             ringEvery={numberToRing}
                                             hoursDisplayedInClock={hoursBeingDisplayed(false)}
+                                            timeInactivity={timeOfTabInactivity}
                                             ariaIdForContainer={'Clock 2'}
                                         />
                                     </div>

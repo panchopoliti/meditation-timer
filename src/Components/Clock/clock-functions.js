@@ -100,6 +100,8 @@ export const setNextSecondAndNextMinute = (isCountDown, seconds, minutes, hours)
     }
 };
 
+export const getClosestSecond = (ms) => +ms.toFixed();
+
 export const getMethodsForEnterPressing = ({
   clockStatus,
   clockByUnits, 
@@ -129,13 +131,83 @@ export const getMethodsForEnterPressing = ({
   return arrayOfMethods;
 };
 
-export function convertOrdinaryNumbersInTimeNumbers(numOfSeconds = 0, numOfMinutes = 0, numOfHours = 0, convertHours = true) {
+export function makeTimeNumberOperations(firstNumInSeconds, secondNumInSeconds, operation = 'sum') {
+
+  let result;
+
+  switch(operation) {
+    case 'sum':
+      result = firstNumInSeconds + secondNumInSeconds; 
+      return getTimeOutOfSeconds(result);
+    case 'rest':
+      result = firstNumInSeconds - secondNumInSeconds;
+      return getTimeOutOfSeconds(result);
+    default: 
+      result = firstNumInSeconds + secondNumInSeconds;
+      return getTimeOutOfSeconds(result)
+  }
+}
+
+export function getSecondsOutOfTime({ seconds, minutes, hours }) {
+  return seconds + minutes * 60 + hours * 3600;
+}
+
+export function getTimeOutOfSeconds(numOfAnyDigitsInSeconds) {
+
+  let num = numOfAnyDigitsInSeconds;
+  const time = {
+    seconds: 0,
+    minutes: 0,
+    hours: 0,
+  }
+
+  if (num < 60) {
+
+    time.seconds = getClosestSecond(num);
+
+    return time;
+  }
+
+  num = num / 60;
+  if (num < 60) {
+
+    time.minutes = Number.parseInt(num);
+    const secondsWithDecimals = numOfAnyDigitsInSeconds - time.minutes * 60;
+
+    time.seconds = getClosestSecond(secondsWithDecimals);
+
+    return time;
+  
+  }
+
+  num = num / 60;
+  if (num <= 99) {
+
+    time.hours = Number.parseInt(num);
+    time.minutes = Number.parseInt(numOfAnyDigitsInSeconds / 60 - time.hours * 60);
+
+    const secondsWithDecimals = numOfAnyDigitsInSeconds - time.minutes * 60 - time.hours * 3600;
+
+    time.seconds = getClosestSecond(secondsWithDecimals);
+
+    return time;
+
+  }
+
+  time.seconds = 59;
+  time.minutes = 59;
+  time.hours = 99;
+
+}
+
+// It recieves only Natural Numbers
+export function solveExcessInTimeUnitsOfTwoDigits(numOfSeconds = 0, numOfMinutes = 0, numOfHours = 0, convertHours = true) {
 
   let seconds = numOfSeconds,
       minutes = numOfMinutes,
       hours = numOfHours;
 
-  if (seconds <= 60 && minutes <= 60) return { seconds, minutes, hours };
+  if (seconds <= 60 && minutes <= 60 && hours <= 99) return { seconds, minutes, hours };
 
   if (seconds > 60) {
       seconds -= 60;

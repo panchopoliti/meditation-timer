@@ -4,11 +4,13 @@ import './clock.scss';
 import { NumbersOfClock, ClockLabels, ClockButtons } from './index.js';
 import { noop } from '../../generalFunctions.js';
 import { 
-  convertOrdinaryNumbersInTimeNumbers,
+  solveExcessInTimeUnitsOfTwoDigits,
   checkIfTimerIsInZero,
   getSettingsForButton, 
   setNextSecondAndNextMinute,
   getMethodsForEnterPressing,
+  makeTimeNumberOperations,
+  getSecondsOutOfTime,
 } from './clock-functions.js';
 
 class Clock extends React.Component {
@@ -95,11 +97,12 @@ class Clock extends React.Component {
   };
 
   setNewTimer = (seconds, minutes, hours) => {
+
     const { 
       minutes: newMinutes,
       seconds: newSeconds,
       hours: newHours,
-    } = convertOrdinaryNumbersInTimeNumbers(seconds, minutes, hours);
+    } = solveExcessInTimeUnitsOfTwoDigits(seconds, minutes, hours);
 
     this.setState({
       seconds: newSeconds,
@@ -137,6 +140,32 @@ class Clock extends React.Component {
     };
   };
 
+  handleClockInactivity = () => {
+    const { seconds, minutes, hours } = this.state;
+    const { inactivityInSeconds } = this.props.timeInactivity;
+
+    const stateSeconds = getSecondsOutOfTime({ seconds, minutes, hours })
+
+    const startTickingAgain = ({ seconds, minutes, hours } = {}) => {
+
+      this.setNewTimer(seconds, minutes, hours);
+      this.startClock();
+
+    }
+
+    if (this.props.isCountDown) {
+
+      const newTimer = makeTimeNumberOperations(stateSeconds, inactivityInSeconds, 'rest');
+      startTickingAgain(newTimer);
+
+    } else {
+
+      const newTimer = makeTimeNumberOperations(stateSeconds, inactivityInSeconds, 'sum');
+      startTickingAgain(newTimer);
+
+    }
+  }
+
   componentDidUpdate(prevProps){
 
     const { clockStarted, clockPaused } = this.state;
@@ -165,6 +194,11 @@ class Clock extends React.Component {
 
       setHoursInClock(stateName, areHoursDisplayedInClock);
     }
+
+    if (prevProps.timeInactivity.isTabActive && !this.props.timeInactivity.isTabActive && clockStarted) this.pauseClock()
+
+    if (!prevProps.timeInactivity.isTabActive && this.props.timeInactivity.isTabActive && clockPaused) this.handleClockInactivity();
+
   }
   
   render () {
@@ -230,6 +264,11 @@ Clock.propTypes = {
     ringEvery: PropTypes.number,
     setPositionOfCursorInInput: PropTypes.func,
     hoursDisplayedInClock: PropTypes.object,
+    timeInactivity: PropTypes.shape({
+      start: PropTypes.number,
+      inactivityInSeconds: PropTypes.number,
+      isTabActive: PropTypes.bool,
+  }),
     ariaIdForContainer: PropTypes.string,
 };
 

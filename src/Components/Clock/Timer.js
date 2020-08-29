@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Clock from './Clock.js'
 import './clock.scss';
 import { isNaturalNumber } from '../../generalFunctions.js';
-import { convertOrdinaryNumbersInTimeNumbers } from './clock-functions.js';
+import { solveExcessInTimeUnitsOfTwoDigits } from './clock-functions.js';
 
 class Timer extends React.Component {
 
@@ -64,7 +64,7 @@ class Timer extends React.Component {
 
     changeTimerNumbers = () => {
         const { inputSeconds, inputMinutes, inputHours} = this.state;
-        const { seconds, minutes, hours} = convertOrdinaryNumbersInTimeNumbers(inputSeconds, inputMinutes, inputHours);
+        const { seconds, minutes, hours} = solveExcessInTimeUnitsOfTwoDigits(inputSeconds, inputMinutes, inputHours);
 
         this.setState({ 
             inputSeconds: seconds,
@@ -182,6 +182,7 @@ class Timer extends React.Component {
                 setPositionOfCursorInInput={this.setPositionOfCursorInInput}
                 setHoursInClock={this.props.setHoursInClock}
                 hoursDisplayedInClock={this.props.hoursDisplayedInClock}
+                timeInactivity={this.props.timeInactivity}
                 ariaIdForContainer={this.props.ariaIdForContainer}
             >
                 <input
@@ -208,6 +209,11 @@ Timer.propTypes = {
     bellStarting: PropTypes.func,
     keyPressed: PropTypes.string,
     hoursDisplayedInClock: PropTypes.object,
+    timeInactivity: PropTypes.shape({
+        start: PropTypes.number,
+        inactivityInSeconds: PropTypes.number,
+        isTabActive: PropTypes.bool,
+    }),
     ariaIdForContainer: PropTypes.string,
 };
 
