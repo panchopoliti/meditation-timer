@@ -6,8 +6,13 @@ import burmeseGong from '../.././static/Audio/gong-burmese.wav';
 import chineseGong from '../.././static/Audio/gong-chinese.wav';
 import tingshaBell from '../.././static/Audio/tingsha.wav';
 import zenBell from '../.././static/Audio/zen-bell.mp3';
+import deepBell from '../.././static/Audio/deep-bell.mp3';
+import oceanWaves from '../.././static/Audio/ocean-waves.mp3';
+import rainforestWaterways from '../.././static/Audio/rainforest-waterways.mp3';
+import soothingWinds from '../.././static/Audio/soothing-winds.mp3';
+import tibetanBell from '../.././static/Audio/tibetan-bell.mp3';
 
-const defaultAudioSelected = 'Long Bell';
+const defaultAudioSelected = 'Bowl Struck';
 
 const audiosInfoArray = [
     {
@@ -41,6 +46,26 @@ const audiosInfoArray = [
     {
         name: 'Zen Bell',
         src: zenBell,
+    },
+    {
+        name: 'Deep Bell',
+        src: deepBell,
+    },
+    {
+        name: 'Ocean Waves',
+        src: oceanWaves,
+    },
+    {
+        name: 'Rainforest Waterways',
+        src: rainforestWaterways,
+    },
+    {
+        name: 'Soothing Winds',
+        src: soothingWinds,
+    },
+    {
+        name: 'Tibetan Bell',
+        src: tibetanBell,
     },
 ];
 
