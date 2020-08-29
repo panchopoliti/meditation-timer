@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/meditation-timer/precache-manifest.f57c2e7808c5e0b33777f9fac8a5b28f.js"
+  "/meditation-timer/precache-manifest.18b1cd7c075c859c4d059df830edfdff.js"
 );
 
 self.addEventListener('message', (event) => {
