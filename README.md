@@ -23,3 +23,6 @@ Material-UI
 
 ## Deployment
 Through Gh-Pages
+
+## ARIA
+The project fulfills the W3C ARIA requirements.
