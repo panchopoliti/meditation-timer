@@ -141,7 +141,7 @@ export function makeTimeNumberOperations(firstNumInSeconds, secondNumInSeconds, 
       return getTimeOutOfSeconds(result);
     case 'rest':
       result = firstNumInSeconds - secondNumInSeconds;
-      return getTimeOutOfSeconds(result);
+      return (result >= 0) ? getTimeOutOfSeconds(result) : getTimeOutOfSeconds(0);
     default: 
       result = firstNumInSeconds + secondNumInSeconds;
       return getTimeOutOfSeconds(result)
