@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a89ee02edca64a2ea2bfb5d55d0e684a",
+    "revision": "688e9f972db5ba2bf70e0ecfacfa4846",
     "url": "/meditation-timer/index.html"
   },
   {
-    "revision": "a8cf1623a73d64bb9505",
-    "url": "/meditation-timer/static/css/main.5529308e.chunk.css"
+    "revision": "ab3e3471492c809e124a",
+    "url": "/meditation-timer/static/css/main.73d9269d.chunk.css"
   },
   {
-    "revision": "90f8f00b0c9f7c0eee2c",
-    "url": "/meditation-timer/static/js/2.81cef546.chunk.js"
+    "revision": "e5e344bd76364b56ec2c",
+    "url": "/meditation-timer/static/js/2.d1a8c5d7.chunk.js"
   },
   {
     "revision": "89b0379e7bcda1a468d8b0343aeb4e53",
-    "url": "/meditation-timer/static/js/2.81cef546.chunk.js.LICENSE.txt"
+    "url": "/meditation-timer/static/js/2.d1a8c5d7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a8cf1623a73d64bb9505",
-    "url": "/meditation-timer/static/js/main.0c013c5a.chunk.js"
+    "revision": "ab3e3471492c809e124a",
+    "url": "/meditation-timer/static/js/main.7736f936.chunk.js"
   },
   {
     "revision": "e5cf40a7bb9502fd40a6",
@@ -40,6 +40,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meditation-timer/static/media/cog-solid.9f07a3df.svg"
   },
   {
+    "revision": "d7c7a6345b6c21e9f11cda3fc41aa130",
+    "url": "/meditation-timer/static/media/deep-bell.d7c7a634.mp3"
+  },
+  {
     "revision": "368c1978e0ee43c7af5f5d00d91f7d0a",
     "url": "/meditation-timer/static/media/gong-burmese.368c1978.wav"
   },
@@ -48,8 +52,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meditation-timer/static/media/gong-chinese.b8a8b3be.wav"
   },
   {
-    "revision": "f3aa308a047a496163bdf002c5551b24",
-    "url": "/meditation-timer/static/media/long-bell.f3aa308a.mp3"
+    "revision": "7cd5fe251f016ca438100f5a844aecc8",
+    "url": "/meditation-timer/static/media/long-bell.7cd5fe25.mp3"
+  },
+  {
+    "revision": "cf5e5b17f0395efc93bf0fb57dff2562",
+    "url": "/meditation-timer/static/media/ocean-waves.cf5e5b17.mp3"
+  },
+  {
+    "revision": "248de7ebfaac6fae5851694a4628b437",
+    "url": "/meditation-timer/static/media/rainforest-waterways.248de7eb.mp3"
+  },
+  {
+    "revision": "817175e6406563f819548db7a4868708",
+    "url": "/meditation-timer/static/media/soothing-winds.817175e6.mp3"
+  },
+  {
+    "revision": "48e1cfbeec44f94702f2af2fb74add22",
+    "url": "/meditation-timer/static/media/tibetan-bell.48e1cfbe.mp3"
   },
   {
     "revision": "760cc3b2272584f445867de0dc08e2ce",
