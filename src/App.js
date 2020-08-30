@@ -2,7 +2,7 @@ import React from 'react';
 import Timer from './Components/Clock/Timer.js';
 import { getClosestSecond } from './Components/Clock/clock-functions.js';
 import { default as Stopwatch } from './Components/Clock/Clock.js';
-import './app.scss';
+import './css/app.scss';
 import AudiosModal from './Components/Modals/AudiosModal.js';
 import { BelowClockContainer, TabButtons, ChangeSizeButton } from './Components/App';
 
