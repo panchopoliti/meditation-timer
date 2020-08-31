@@ -121,10 +121,6 @@ body {
                 &:hover{
                     cursor: pointer;
                 }
-    
-                &:hover + .tooltip {
-                    visibility: visible;
-                }
             }
             
             .tooltip {
@@ -204,7 +200,12 @@ footer {
                             width: 30px;
                             height: 30px;
                         }
+    
+                        &:hover + .tooltip {
+                            visibility: visible;
+                        }
                     }
+                    
 
                     .tooltip{
                         font-size: 1.4em;
