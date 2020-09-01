@@ -186,7 +186,7 @@ class Timer extends React.Component {
                 ariaIdForContainer={this.props.ariaIdForContainer}
             >
                 <input
-                    tabIndex={1}
+                    tabIndex={0}
                     ref={this.inputClockRef}
                     onBlur={this.handleClockEvents}
                     onFocus={this.handleClockEvents}
@@ -212,7 +212,7 @@ Timer.propTypes = {
     timeInactivity: PropTypes.shape({
         start: PropTypes.number,
         inactivityInSeconds: PropTypes.number,
-        isTabActive: PropTypes.bool,
+        isWindowTabActive: PropTypes.bool,
     }),
     ariaIdForContainer: PropTypes.string,
 };

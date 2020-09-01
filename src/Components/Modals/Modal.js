@@ -53,7 +53,7 @@ class Modal extends Component {
         aria-labelledby='modalDialogTitle'
         aria-describedby="bellsDialog"
         ref={this.setDivFocus}
-        tabIndex={1} 
+        tabIndex={0} 
         className={`globalAlert modalEffect ${(modalState) ? 'showModal' : ''} ${(modalValidation) ? '' : 'invalidModal'}`}
         onKeyDown={(ev) => this.closeModalOnKeyPress(ev)}>
         <div className='modalContent'>

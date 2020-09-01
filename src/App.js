@@ -22,7 +22,7 @@ class App extends React.Component {
             timeOfTabInactivity: {
                 start: null,
                 inactivityInSeconds: null,
-                isTabActive: true,
+                isWindowTabActive: true,
             },
             isTimerShowingHours: false,
             isStopwatchShowingHours: false,
@@ -73,44 +73,46 @@ class App extends React.Component {
     handleVisibilityChange = (ev) => {
 
         const { timeStamp } = ev || {};
-        const { start: inactivityStart, isTabActive } = this.state.timeOfTabInactivity;
+        const { start: inactivityStart } = this.state.timeOfTabInactivity;
 
-        if (isTabActive) {
+        if (document.visibilityState === 'hidden') {
+
+            if (inactivityStart !== null) return;
 
             this.setState({
                 timeOfTabInactivity: {
                     start: timeStamp,
                     inactivityInSeconds: null,
-                    isTabActive: false,
+                    isWindowTabActive: false,
                 },
             });
 
-            return;
+        } else {
+
+            const timeOfInactivityInMs = timeStamp - inactivityStart;
+
+            const timeOfInactivityInSeconds = getClosestSecond(timeOfInactivityInMs / 1000)
+    
+            this.setState({
+                timeOfTabInactivity: {
+                    start: null,
+                    inactivityInSeconds: timeOfInactivityInSeconds,
+                    isWindowTabActive: true,
+                },
+            });
         }
-
-        const timeOfInactivityInMs = timeStamp - inactivityStart;
-
-        const timeOfInactivityInSeconds = getClosestSecond(timeOfInactivityInMs / 1000)
-
-        this.setState({
-            timeOfTabInactivity: {
-                start: null,
-                inactivityInSeconds: timeOfInactivityInSeconds,
-                isTabActive: true,
-            },
-        });
-        
-
     }
     
     componentDidMount() {
         document.addEventListener('keydown', this.onBodyKeydown);
         document.addEventListener('visibilitychange', this.handleVisibilityChange);
+        document.addEventListener('resume', this.handleVisibilityChange);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.onBodyKeydown);
         document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+        document.removeEventListener('resume', this.handleVisibilityChange);
     }
  
     componentDidUpdate(prevProps, prevState) {
@@ -233,13 +235,6 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
-
-
-
-
 
 
 

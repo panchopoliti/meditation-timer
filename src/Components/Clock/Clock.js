@@ -25,6 +25,12 @@ class Clock extends React.Component {
       seconds: initialSeconds,
       minutes: initialMinutes,
       hours: initialHours,
+      timeWhenInactivityStarted : {
+        seconds: null,
+        minutes: null,
+        hours: null,
+        isInactive: false,
+      },
     }
 
     this.clockMethods = {
@@ -140,35 +146,55 @@ class Clock extends React.Component {
     };
   };
 
+  setClockInactivity = () => {
+
+    this.setState({
+      timeWhenInactivityStarted: {
+        seconds: this.state.seconds,
+        minutes: this.state.minutes,
+        hours: this.state.hours,
+        isInactive: true,
+      },
+    });
+  }
+
   handleClockInactivity = () => {
-    const { seconds, minutes, hours } = this.state;
+    const { seconds, minutes, hours } = this.state.timeWhenInactivityStarted;
     const { inactivityInSeconds } = this.props.timeInactivity;
 
     const stateSeconds = getSecondsOutOfTime({ seconds, minutes, hours })
 
-    const startTickingAgain = ({ seconds, minutes, hours } = {}) => {
-
-      this.setNewTimer(seconds, minutes, hours);
-      this.startClock();
-
-    }
+    const addSecondsOfInactivityToClock = ({ seconds, minutes, hours } = {}) => this.setNewTimer(seconds, minutes, hours);
 
     if (this.props.isCountDown) {
 
       const newTimer = makeTimeNumberOperations(stateSeconds, inactivityInSeconds, 'rest');
-      startTickingAgain(newTimer);
+      addSecondsOfInactivityToClock(newTimer);
 
     } else {
 
       const newTimer = makeTimeNumberOperations(stateSeconds, inactivityInSeconds, 'sum');
-      startTickingAgain(newTimer);
+      addSecondsOfInactivityToClock(newTimer);
 
     }
+
+    this.setState({
+      timeWhenInactivityStarted: {
+        seconds: null,
+        minutes: null,
+        hours: null,
+        isInactive: false,
+      },
+    })
   }
 
   componentDidUpdate(prevProps){
 
-    const { clockStarted, clockPaused } = this.state;
+    const { 
+      clockStarted,
+      clockPaused, 
+      timeWhenInactivityStarted : { isInactive: isClockInactive }, 
+    } = this.state;
     const { focusOnInput, inputValueLength, keyPressed } = this.props;
 
     const areHoursDisplayedInClock = (this.state.hours !== 0 || this.props.focusOnInput);
@@ -195,9 +221,11 @@ class Clock extends React.Component {
       setHoursInClock(stateName, areHoursDisplayedInClock);
     }
 
-    if (prevProps.timeInactivity.isTabActive && !this.props.timeInactivity.isTabActive && clockStarted) this.pauseClock()
+    const { isWindowTabActive } = this.props.timeInactivity;
 
-    if (!prevProps.timeInactivity.isTabActive && this.props.timeInactivity.isTabActive && clockPaused) this.handleClockInactivity();
+    if (prevProps.timeInactivity.isWindowTabActive && !isWindowTabActive && clockStarted && !clockPaused) this.setClockInactivity()
+
+    if (!prevProps.timeInactivity.isWindowTabActive && isWindowTabActive && isClockInactive) this.handleClockInactivity();
 
   }
   
@@ -267,7 +295,7 @@ Clock.propTypes = {
     timeInactivity: PropTypes.shape({
       start: PropTypes.number,
       inactivityInSeconds: PropTypes.number,
-      isTabActive: PropTypes.bool,
+      isWindowTabActive: PropTypes.bool,
   }),
     ariaIdForContainer: PropTypes.string,
 };
