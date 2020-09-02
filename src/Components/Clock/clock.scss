@@ -36,10 +36,6 @@
             font-family: $font-roboto;
             padding: 18px;
 
-            > span {
-                color: #000;
-            }
-
             .withoutInputValue{
                 color: #aaa;
             }
@@ -52,6 +48,24 @@
                 border-right: 1px solid #000;
             }
     
+        }
+
+        .lightNumbers {
+            @extend .numbers;
+            color: #000;
+
+            > span {
+                color: #000;
+            }
+        }
+
+        .darkNumbers {
+            @extend .numbers;
+            color: #fff;
+
+            > span {
+                color: #fff;
+            }
         }
 
         .hoursContainer {
@@ -72,6 +86,16 @@
         .titleSpan {
             padding: 0 20px 25px;
             font-size: 1.3em;
+        }
+
+        .lightTitleSpan {
+            @extend .titleSpan;
+            color: #000;
+        }
+
+        .darkTitleSpan {
+            @extend .titleSpan;
+            color: #fff;
         }
     }
 }

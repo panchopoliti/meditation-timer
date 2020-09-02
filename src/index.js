@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App.js';
+import { ThemeContextProvider } from './ThemeContext.js';
 
 ReactDOM.render(
-    <App />,
+  <ThemeContextProvider>
+    <App />
+  </ThemeContextProvider>,
   document.getElementById('root')
 );

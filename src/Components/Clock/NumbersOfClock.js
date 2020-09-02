@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './clock.scss';
 import { addLeadingZero } from './clock-functions.js';
 import { noop } from '../../generalFunctions.js';
+import { ThemeContextConsumer } from '../../ThemeContext.js';
 
 const TIME_UNITS = {
     seconds: 'seconds',
@@ -163,14 +164,23 @@ class NumbersOfClock extends Component {
                 className={`numbersContainer ${(!focusOnInput && isCountDown) ? 'clockDefined' : ''}`}
                 onClick={handleClockEvents}
                 onMouseDown={handleClockEvents}
-            >   
-                <div className={`hoursContainer ${(hours === 0 && !focusOnInput) ? 'hide' : ''}`}>
-                    <div className='numbers'>{hoursToDisplay}</div>
-                    <div className='numbers'>:</div>
-                </div>
-                <div className='numbers'>{minutesToDisplay}</div>
-                <div className='numbers'>:</div>
-                <div className='numbers'>{secondsToDisplay}</div>
+            >
+                <ThemeContextConsumer>
+                    {
+                        ({ theme }) => (
+                            <React.Fragment>
+                                <div className={`hoursContainer ${(hours === 0 && !focusOnInput) ? 'hide' : ''}`}>
+                                    <div className={`${theme}Numbers`}>{hoursToDisplay}</div>
+                                    <div className={`${theme}Numbers`}>:</div>
+                                </div>
+                                <div className={`${theme}Numbers`}>{minutesToDisplay}</div>
+                                <div className={`${theme}Numbers`}>:</div>
+                                <div className={`${theme}Numbers`}>{secondsToDisplay}</div>
+                            </React.Fragment>
+                        )
+                    }
+                </ThemeContextConsumer>
+
             </div>
         );
     }

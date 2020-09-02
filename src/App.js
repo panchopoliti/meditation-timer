@@ -4,7 +4,8 @@ import { getClosestSecond } from './Components/Clock/clock-functions.js';
 import { default as Stopwatch } from './Components/Clock/Clock.js';
 import './css/app.scss';
 import AudiosModal from './Components/Modals/AudiosModal.js';
-import { BelowClockContainer, TabButtons, ChangeSizeButton } from './Components/App';
+import { BelowClockContainer, TabButtons, ChangeSizeButton, ThemeToggler, NavBar } from './Components/App';
+import { ThemeContextConsumer } from './ThemeContext.js';
 
 class App extends React.Component {
 
@@ -115,7 +116,7 @@ class App extends React.Component {
         document.removeEventListener('resume', this.handleVisibilityChange);
     }
  
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevState) {
 
         const { modalClicked, modalSelectValue } = this.state;
 
@@ -161,75 +162,82 @@ class App extends React.Component {
         buttonsClassnames.buttons[activeTab] = 'btnSelected';
 
         return (
-            <div className={`mainContainer ${(showAppInBig) ? 'bigScreenMode' : ''}`}>
-                <div onClick={this.handleModal} className={`modalOverlay ${(showingOverlay) ? 'showOverlay' : ''}`}></div>
-                <AudiosModal 
-                    stopKeyEventPropagation={true}
-                    bellStarting={bellStarting}
-                    closeModal={this.handleModal} 
-                    modalState={modalClicked}
-                    ringBellEvery={modalSelectValue}
-                    handleMinutesSelect={this.handleModalSelect}
-                    showTimer={showTimer}
-                />
-                <div className='appContainer'>
-                    <ChangeSizeButton
-                        onClick={this.setAppInBigSize}
-                        buttonText={(showAppInBig) ? 'Make it Small' : 'Make it Big!'} 
-                    />
-                    <main className='appSubContainer'>
-                            <TabButtons
-                                activeTab={activeTab}
-                                handleClick={this.handleClockBtns}
-                                amountOfButtons={2}
-                                buttonsText={['Timer', 'Stopwatch']}
-                                classNames={buttonsClassnames}
+            <ThemeContextConsumer>
+                {
+                    ({ theme }) => (
+                        <div className={`${theme}MainContainer ${(showAppInBig) ? 'bigScreenMode' : ''}`}>
+                            <div onClick={this.handleModal} className={`modalOverlay ${(showingOverlay) ? 'showOverlay' : ''}`}></div>
+                            <AudiosModal 
+                                stopKeyEventPropagation={true}
+                                bellStarting={bellStarting}
+                                closeModal={this.handleModal} 
+                                modalState={modalClicked}
+                                ringBellEvery={modalSelectValue}
+                                handleMinutesSelect={this.handleModalSelect}
+                                showTimer={showTimer}
                             />
-                            <section>
-                                <div className='clock'>
-                                    <div className={`${(showTimer) ? '' : 'hide' }`}>
-                                        <Timer 
-                                            keyPressed={(showTimer) ? keyPressed : null} 
-                                            bellStarting={this.bellStarting} 
-                                            hours={0}
-                                            minutes={10} 
-                                            seconds={0}
-                                            hoursDisplayedInClock={hoursBeingDisplayed(true)}
-                                            timeInactivity={timeOfTabInactivity}
-                                            ariaIdForContainer={'Clock 1'}
+                            <NavBar/>
+                            <div className='appContainer'>
+                                <ChangeSizeButton
+                                    onClick={this.setAppInBigSize}
+                                    buttonText={(showAppInBig) ? 'Make it Small' : 'Make it Big!'} 
+                                />
+                                <main className='appSubContainer'>
+                                        <TabButtons
+                                            activeTab={activeTab}
+                                            handleClick={this.handleClockBtns}
+                                            amountOfButtons={2}
+                                            buttonsText={['Timer', 'Stopwatch']}
+                                            classNames={buttonsClassnames}
                                         />
-                                    </div>
-                                    <div className={`${(showTimer) ? 'hide' : '' }`}>
-                                        <Stopwatch 
-                                            keyPressed={(showTimer) ? null : keyPressed}
-                                            bellStarting={this.bellStarting}
-                                            hours={0} 
-                                            minutes={0} 
-                                            seconds={0}
-                                            ringEvery={numberToRing}
-                                            hoursDisplayedInClock={hoursBeingDisplayed(false)}
-                                            timeInactivity={timeOfTabInactivity}
-                                            ariaIdForContainer={'Clock 2'}
+                                        <section>
+                                            <div className='clock'>
+                                                <div className={`${(showTimer) ? '' : 'hide' }`}>
+                                                    <Timer 
+                                                        keyPressed={(showTimer) ? keyPressed : null} 
+                                                        bellStarting={this.bellStarting} 
+                                                        hours={0}
+                                                        minutes={10} 
+                                                        seconds={0}
+                                                        hoursDisplayedInClock={hoursBeingDisplayed(true)}
+                                                        timeInactivity={timeOfTabInactivity}
+                                                        ariaIdForContainer={'Clock 1'}
+                                                    />
+                                                </div>
+                                                <div className={`${(showTimer) ? 'hide' : '' }`}>
+                                                    <Stopwatch 
+                                                        keyPressed={(showTimer) ? null : keyPressed}
+                                                        bellStarting={this.bellStarting}
+                                                        hours={0} 
+                                                        minutes={0} 
+                                                        seconds={0}
+                                                        ringEvery={numberToRing}
+                                                        hoursDisplayedInClock={hoursBeingDisplayed(false)}
+                                                        timeInactivity={timeOfTabInactivity}
+                                                        ariaIdForContainer={'Clock 2'}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <BelowClockContainer 
+                                            showTimer={showTimer} 
+                                            numberToRing={numberToRing} 
+                                            handleModal={this.handleModal}
                                         />
-                                    </div>
-                                </div>
-                            </section>
-                            <BelowClockContainer 
-                                showTimer={showTimer} 
-                                numberToRing={numberToRing} 
-                                handleModal={this.handleModal}
-                            />
-                    </main>
-                </div>
-                <footer>
-                    <span>
-                        Logos taken by&nbsp;
-                        <a href='https://fontawesome.com/license'>Font Awesome</a>
-                        &nbsp;and&nbsp;
-                        <a href='https://icons8.com/'>Icons 8</a>
-                    </span>
-                </footer>
-            </div>
+                                </main>
+                            </div>
+                            <footer>
+                                <span>
+                                    Logos taken by&nbsp;
+                                    <a href='https://fontawesome.com/license'>Font Awesome</a>
+                                    &nbsp;and&nbsp;
+                                    <a href='https://icons8.com/'>Icons 8</a>
+                                </span>
+                            </footer>
+                        </div>
+                    )
+                }
+            </ThemeContextConsumer>
         );
     }
 }

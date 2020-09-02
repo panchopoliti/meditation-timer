@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContextConsumer } from '../../ThemeContext.js';
 
 function ChangeSizeButton({ onClick, classNames = {}, buttonText }) {
 
     return (
-        <div className={`sizeAppButtonContainer ${classNames.container}}`}>
-            <button onClick={onClick} className={`${classNames.button}`}>{buttonText}</button>
-        </div>
+        <ThemeContextConsumer>
+            {
+                ({ theme }) => (
+                    <div className={`sizeAppButtonContainer ${classNames.container}}`}>
+                        <button onClick={onClick} className={`${theme}ChangeSizeButton ${classNames.button}`}>{buttonText}</button>
+                    </div>
+                )
+            }
+        </ThemeContextConsumer>
     );
     
 }
