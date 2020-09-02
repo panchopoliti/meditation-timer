@@ -1,0 +1,116 @@
+@import '../../../css/constants';
+
+:global .MuiFormControl-root {
+
+    .MuiSelect-root, .MuiInputLabel-root, .MuiSelect-icon {
+        color: #fff !important;    
+    }
+}
+
+:global .MuiAutocomplete-root {
+
+    input, label, button {
+            color: #fff !important;
+    }
+}
+
+:global .MuiOutlinedInput-notchedOutline {
+    border-color:#fff !important;
+}
+
+.audioSelection {
+    padding: $labels-padding;
+}
+
+.reproduceAudio {
+    margin: 0;
+
+    figcaption {
+        padding: $labels-padding;
+    }
+}
+
+.inputContainer {
+    background-color: #011936;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 2em;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 1em 0.25em;
+
+    .button {
+        padding: 10px 10px;
+        color: #fff;
+        margin: 0 5px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    .alertButton {
+        background-color: #ef5858;
+    
+        &:hover {
+            background-color:  red;
+        }
+    }
+    
+    .successButton {
+        background-color: #1ab394;
+    
+        &:hover {
+            background-color: #028a6f;
+        }
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .bigContainer {
+
+        .audioSelection {
+
+            label {
+                font-size: 1.8em;
+
+                + div {
+                    font-size: 1.4em;
+                    padding-top: 0.5em;
+                }
+            }
+        }
+
+        .reproduceAudio {
+
+            figcaption {
+                font-size: 1.4em;
+            }
+        }
+
+        .inputContainer {
+            input {
+                font-size: 1.4em;
+            }
+
+            label {
+                font-size: 1.1em;
+            }
+        }
+        
+        .buttonsContainer {
+        
+            .button {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 335px) {
+    audio {
+        width: 75vw;
+    }
+}

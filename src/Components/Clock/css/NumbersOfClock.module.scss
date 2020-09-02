@@ -1,0 +1,84 @@
+@import '../../../css/fonts';
+
+.hide {
+    display: none !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 17px;
+
+    .numbers {
+        font-size: 2.5em;
+        font-family: $font-roboto;
+        padding: 18px;
+
+        .withoutInputValue{
+            color: #aaa;
+        }
+        
+        .defaultSpanColor {
+            cursor: pointer;
+        }
+
+        .activeSpan {
+            border-right: 1px solid #000;
+        }
+
+    }
+
+    .lightNumbers {
+        @extend .numbers;
+        color: #000;
+
+        > span {
+            color: #000;
+        }
+    }
+
+    .darkNumbers {
+        @extend .numbers;
+        color: #fff;
+
+        > span {
+            color: #fff;
+        }
+    }
+
+    .hoursContainer {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.clockDefined {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 481px) {
+    .bigContainer {
+            
+        .bigNumbers {
+            font-size: 4em;
+            font-family: $font-roboto;
+            padding: 18px;
+        }
+
+        .lightNumbers,
+        .darkNumbers {
+            @extend .bigNumbers;
+        }
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .container {
+
+        .lightNumbers,
+        .darkNumbers {
+            font-size: 2em;
+        }
+    }
+} 

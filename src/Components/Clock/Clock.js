@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './clock.scss';
+import styles from './css/Clock.module.scss';
 import { NumbersOfClock, ClockLabels, ClockButtons } from './index.js';
 import { noop } from '../../generalFunctions.js';
 import { 
   solveExcessInTimeUnitsOfTwoDigits,
   checkIfTimerIsInZero,
-  getSettingsForButton, 
   setNextSecondAndNextMinute,
   getMethodsForEnterPressing,
   makeTimeNumberOperations,
   getSecondsOutOfTime,
+  getClockMethod,
 } from './clock-functions.js';
 
 class Clock extends React.Component {
@@ -241,14 +241,10 @@ class Clock extends React.Component {
     const hours = (this.props.inputValueLength) ? this.props.hours : this.state.hours;
 
     const isTimerInZero = checkIfTimerIsInZero(this.props.isCountDown, seconds, minutes, hours)
-
-    let firstButtonProps = getSettingsForButton(clockStarted, clockPaused, this.clockMethods, isTimerInZero);
-    const firstButtonRef = { ref: el => this.startAndPauseButton = el};
-    firstButtonProps = Object.assign(firstButtonProps, firstButtonRef);
     
     return (
       <div id={this.props.ariaIdForContainer} aria-labelledby={this.props.ariaIdForContainer} role='tabpanel'>
-        <div role='timer' className='clockContainer'>
+        <div role='timer' className={styles.container}>
           <NumbersOfClock 
             seconds={seconds}
             minutes={minutes}
@@ -264,12 +260,13 @@ class Clock extends React.Component {
           <ClockLabels hoursDisplayed={this.props.hoursDisplayedInClock.value}/>
         </div>
         <ClockButtons
-          firstButton={firstButtonProps}
-          secondButton={{
-            onClick: this.stopClock,
-            text: 'Reset',
-            className: `dangerButton ${(clockStarted) ? 'animateToRight' : 'hideBtn'}`
+          methods={this.clockMethods}
+          states={{
+            started: clockStarted,
+            paused: clockPaused,
           }}
+          isTimerInZero={isTimerInZero}
+          firstButtonRef={el => this.startAndPauseButton = el}
         />
       </div>
     );  

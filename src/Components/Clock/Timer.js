@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Clock from './Clock.js'
-import './clock.scss';
+import styles from './css/Timer.module.scss';
 import { isNaturalNumber } from '../../generalFunctions.js';
 import { solveExcessInTimeUnitsOfTwoDigits } from './clock-functions.js';
+
 
 class Timer extends React.Component {
 
@@ -193,7 +194,7 @@ class Timer extends React.Component {
                     inputMode='numeric'
                     type='text'
                     onChange={this.onInputChange}
-                    className={'hiddenInput'}
+                    className={styles.hiddenInput}
                     value={inputValue}
                 />
             </Clock>

@@ -1,15 +1,7 @@
 import React from 'react';
 import ThemeToggler from './ThemeToggler.js';
-import { ThemeContextConsumer } from '../../ThemeContext.js';
-
-// class NavBar extends React.Component {
-    
-//     render () {
-//         return (
-
-//         )
-//     }
-// }
+import { ThemeContextConsumer } from '../../Context/ToggleContexts.js';
+import styles from './css/NavBar.module.scss';
 
 export default function NavBar() {
 
@@ -17,7 +9,7 @@ export default function NavBar() {
         <ThemeContextConsumer>
             {
                 ({ theme }) => (
-                    <ul className={`${theme}NavBar`}>
+                    <ul className={styles[`${theme}NavBar`]}>
                         <li>
                             <ThemeToggler/>
                         </li>

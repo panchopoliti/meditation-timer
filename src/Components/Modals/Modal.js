@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Modals.scss';
+import styles from './css/Modal.module.scss';
 import { noop } from '../../generalFunctions.js'
 
 class Modal extends Component {
@@ -54,11 +54,16 @@ class Modal extends Component {
         aria-describedby="bellsDialog"
         ref={this.setDivFocus}
         tabIndex={0} 
-        className={`globalAlert modalEffect ${(modalState) ? 'showModal' : ''} ${(modalValidation) ? '' : 'invalidModal'}`}
+        className={
+          `${styles.globalAlert} 
+          ${styles.modalEffect} 
+          ${(modalState) ? styles.showModal : ''} 
+          ${(modalValidation) ? '' : styles.invalidModal}`
+        }
         onKeyDown={(ev) => this.closeModalOnKeyPress(ev)}>
-        <div className='modalContent'>
-          <div className='modalTitleContainer'>
-            <h2 id='modalDialogTitle' className='modalTitle'>{title}</h2>
+        <div className={styles.modalContent}>
+          <div className={styles.modalTitleContainer}>
+            <h2 id='modalDialogTitle' className={styles.modalTitle}>{title}</h2>
           </div>
           {children}
         </div>

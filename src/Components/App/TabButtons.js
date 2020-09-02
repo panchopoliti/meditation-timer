@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './css/TabButtons.module.scss';
+import { SizeContextConsumer } from '../../Context/ToggleContexts.js';
 
-function TabButtons({ classNames, handleClick, buttonsText, amountOfButtons, activeTab }) {
+
+export default function TabButtons({ classNames, handleClick, buttonsText, amountOfButtons, activeTab }) {
 
     let buttons = [];
 
@@ -16,7 +19,11 @@ function TabButtons({ classNames, handleClick, buttonsText, amountOfButtons, act
                 role='tab'
                 aria-selected={(activeTab === i)}
                 aria-controls={`clock${i + 1}`}
-                className={`buttons ${(classNames.button) ? classNames.button : ''} ${(classNames.buttons[i] ? classNames.buttons[i] : '')}`}
+                className={
+                    `${styles.buttons}
+                    ${(activeTab === i) ? styles.btnSelected : ''}
+                    ${(classNames.button) ? classNames.button : ''}`
+                }
                 onClick={() => handleClick(i)}
             >
                 {buttonText}
@@ -25,9 +32,16 @@ function TabButtons({ classNames, handleClick, buttonsText, amountOfButtons, act
     }
 
     return (
-        <div role='tablist' aria-label='Clocks tablist' className={`btnsContainer ${(classNames.container) ? classNames.container : ''}`}>
-            {buttons}
-        </div>
+        <SizeContextConsumer>
+            {({ size }) => (
+                <div role='tablist' aria-label='Clocks tablist' className={
+                    `${styles.container}
+                    ${(size === 'big') ? styles.bigContainer : ''}
+                    ${(classNames.container) ? classNames.container : ''}`}>
+                    {buttons}
+                </div>
+            )}
+        </SizeContextConsumer>
     );
 }
 
@@ -39,7 +53,6 @@ TabButtons.propTypes = {
     classNames: PropTypes.shape({
         container: PropTypes.string,
         button: PropTypes.string,
-        buttons: PropTypes.arrayOf(PropTypes.string),
     }),
 };
 
@@ -51,5 +64,3 @@ TabButtons.defaultProps = {
         buttons: [''],
     },
 }
-
-export default TabButtons;

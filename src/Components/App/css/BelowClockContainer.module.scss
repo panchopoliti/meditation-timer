@@ -1,0 +1,102 @@
+.hidden {
+    visibility: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1em;
+
+    .containerInfo {
+        font-size: 1em;
+    }
+
+    .lightContainerInfo {
+        @extend .containerInfo;
+        color: #000;
+    }
+
+    .darkContainerInfo {
+        @extend .containerInfo;
+        color: #fff;
+    }
+
+    .settingsContainer {
+        display: flex;
+        flex-direction: column;
+
+        .settingsLogoBtn {
+            justify-content: flex-end;
+            background-color: transparent;
+            border: 0;
+
+            .settingsLogo {
+                filter: opacity(100%);
+            }
+
+            figure {
+                margin: 0;
+            }
+            
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        
+        .tooltip {
+            position: relative;
+            background-color: #6c757d;
+            font-size: 0.85em;
+            margin-top: 1em;
+            padding: 0.3em 0.5em;
+            color: #fff;
+            visibility: hidden;
+        }
+
+    }
+}
+
+@media screen and (min-width: 481px) {
+
+    .bigContainer {
+        margin: 0;
+    
+        .containerInfoBig {
+            font-size: 1.5em;
+        }
+
+        .lightContainerInfo,
+        .darkContainerInfo {
+            @extend .containerInfoBig;
+        }
+        
+        .settingsContainer {
+
+            .settingsLogoBtn {
+
+                .settingsLogo {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            .tooltip{
+                font-size: 1.4em;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container {        
+        .settingsContainer {
+            .settingsLogoBtn {
+
+                &:hover + .tooltip {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

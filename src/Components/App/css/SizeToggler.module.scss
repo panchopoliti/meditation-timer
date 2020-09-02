@@ -1,0 +1,72 @@
+@import '../../../css/fonts';
+
+.container {
+    display: none;
+}
+
+@media screen and (min-width: 481px) {
+
+    .container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2em;
+    
+        .button {
+            transition: all .2s ease;
+            padding: 10px;
+            border: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-sizing: border-box;
+            font-family: $font-poppins;
+    
+            &:hover, &:focus {
+                cursor: pointer;
+            }
+        }
+    
+        .lightButton {
+            @extend .button;
+            background-color: #000;
+            color: #fff;
+    
+            &:hover, &:focus {
+                box-shadow: 0 8px 25px -8px #000;
+            }
+        }
+    
+        .darkButton {
+            @extend .button;
+            background-color: #fff;
+            color: #000;
+    
+            &:hover, &:focus {
+                box-shadow: 0 8px 25px -8px #ddd;
+            }
+        }
+    }
+
+    .bigContainer {
+
+        .lightButton {
+            background-color: #fff;
+            border: 1px #000 solid;
+            color: #000;
+    
+            &:hover {
+                box-shadow: 0 8px 25px -8px #000;
+            }
+        }
+    
+        .darkButton {
+            background-color: #000;
+            border: 1px #fff solid;
+            color: #fff;
+    
+            &:hover {
+                box-shadow: 0 8px 25px -8px #ddd;
+            }
+        } 
+        
+    }
+}

@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTyes from 'prop-types';
-import { ThemeContextConsumer } from '../../ThemeContext.js';
+import { ThemeContextConsumer, SizeContextConsumer } from '../../Context/ToggleContexts.js';
+import styles from './css/ClockLabels.module.scss';
 
 function ClockLabels({ hoursDisplayed }) {
     return (
       <ThemeContextConsumer>
-        {
-          ({ theme }) => (
-            <div className='titlesContainer'>
-              <div className={`${theme}TitleSpan ${(hoursDisplayed) ? '' : 'hide'}`}>HOURS</div>
-              <div className={`${theme}TitleSpan`}>MINUTES</div>
-              <div className={`${theme}TitleSpan`}>SECONDS</div>
-            </div>
-          )
-        }
+        {({ theme }) => (
+          <SizeContextConsumer>
+            {({ size }) => (
+              <div className={`${styles.container} ${(size === 'big') ? styles.bigContainer : ''}`}>
+                <div className={`${styles[`${theme}Title`]} ${(hoursDisplayed) ? '' : styles.hide}`}>HOURS</div>
+                <div className={styles[`${theme}Title`]}>MINUTES</div>
+                <div className={styles[`${theme}Title`]}>SECONDS</div>
+              </div>
+            )}
+          </SizeContextConsumer>
+          )}
       </ThemeContextConsumer>
 
     );

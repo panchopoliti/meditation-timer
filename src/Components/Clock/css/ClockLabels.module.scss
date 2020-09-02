@@ -1,0 +1,45 @@
+
+.hide {
+    display: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .title {
+        padding: 0 20px 25px;
+        font-size: 1.3em;
+    }
+
+    .lightTitle {
+        @extend .title;
+        color: #000;
+    }
+
+    .darkTitle {
+        @extend .title;
+        color: #fff;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .bigContainer {
+
+        .lightTitle,
+        .darkTitle {
+            font-size: 2em;
+        }
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .container {
+        
+        .lightTitle,
+        .darkTitle {
+            font-size: 1em;
+        }
+    }
+}

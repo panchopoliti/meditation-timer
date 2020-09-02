@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App.js';
-import { ThemeContextProvider } from './ThemeContext.js';
+import { ThemeContextProvider, SizeContextProvider } from './Context/ToggleContexts.js';
 
 ReactDOM.render(
   <ThemeContextProvider>
-    <App />
+    <SizeContextProvider>
+      <App />
+    </SizeContextProvider>
   </ThemeContextProvider>,
   document.getElementById('root')
 );

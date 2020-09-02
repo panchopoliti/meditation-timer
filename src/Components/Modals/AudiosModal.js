@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Modal from './Modal.js'
 import PropTypes from 'prop-types';
-import './Modals.scss'
+import styles from './css/AudiosModal.module.scss';
 import { audiosInfoArray, defaultAudioSelected } from '../Bells';
 import { TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 import AutoComplete from '@material-ui/lab/Autocomplete';
 import { getNumberWithTimeUnitLabel } from '../../generalFunctions.js';
+import { SizeContextConsumer } from '../../Context/ToggleContexts.js';
 
 const maxOfMinutesSelection = 360;
 
@@ -76,50 +77,56 @@ class AudiosModal extends Component {
                 closeModal={this.closeModal}
                 closeSuccessModal={this.closeSuccessModal}
                 stopKeyEventPropagation={this.props.stopKeyEventPropagation}
-            >
-                <div className='audioSelection'>
-                    <FormControl>
-                        <InputLabel id="simple-select-label">Bells</InputLabel>
-                        <Select
-                            labelId="simple-select-label"
-                            id="simple-select"
-                            value={this.state.selectAudiosValue}
-                            onChange={this.handleSelectAudiosChange}
-                        >
-                            {audios}
-                        </Select>
-                    </FormControl>
-                </div>
-                <figure className='reproduceAudio'>
-                    <figcaption>Reproduce Bell</figcaption>
-                    <audio ref={e => this.bellRef = e} src={selectedAudioSrc} controls>
-                        Your browser does not support the
-                        <code>audio</code> element.
-                    </audio>
-                </figure>
-                <div className={`inputContainer ${(this.props.showTimer) ? 'hide' : ''}`}>
-                    <AutoComplete
-                        id="combo-box"
-                        options={minutesOptionsArr}
-                        getOptionSelected={(option, { value }) => option.value === value}
-                        getOptionLabel={(option) => option.label}
-                        onChange={this.props.handleMinutesSelect}
-                        onInputChange={(ev, value) => this.handleInputChange(ev, value)}
-                        inputValue={autoCompleteInputValue}
-                        handleHomeEndKeys={true}
-                        filterSelectedOptions={true}
-                        fullWidth={true}
-                        renderInput={(params) => <TextField {...params} label="Ring every" variant="outlined" />}
-                    />
-                </div>
-                <div className='buttonsInModalContainer'>
-                    <button 
-                        className={`alertButton buttonsInModal ${(this.props.showTimer) ? 'hide' : ''}`}
-                        onClick={(ev) => this.closeModal(ev, false)}>
-                        Cancel
-                    </button>
-                    <button className='successButton buttonsInModal' onClick={this.closeSuccessModal}>Save changes</button>
-                </div>
+            >   
+            <SizeContextConsumer>
+                {({ size }) => (
+                    <div className={(size === 'big' ? styles.bigContainer : '')}>
+                        <div className={styles.audioSelection}>
+                            <FormControl>
+                                <InputLabel id="simple-select-label">Bells</InputLabel>
+                                <Select
+                                    labelId="simple-select-label"
+                                    id="simple-select"
+                                    value={this.state.selectAudiosValue}
+                                    onChange={this.handleSelectAudiosChange}
+                                >
+                                    {audios}
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <figure className={styles.reproduceAudio}>
+                            <figcaption>Reproduce Bell</figcaption>
+                            <audio ref={e => this.bellRef = e} src={selectedAudioSrc} controls>
+                                Your browser does not support the
+                                <code>audio</code> element.
+                            </audio>
+                        </figure>
+                        <div className={`${styles.inputContainer} ${(this.props.showTimer) ? styles.hide : ''}`}>
+                            <AutoComplete
+                                id="combo-box"
+                                options={minutesOptionsArr}
+                                getOptionSelected={(option, { value }) => option.value === value}
+                                getOptionLabel={(option) => option.label}
+                                onChange={this.props.handleMinutesSelect}
+                                onInputChange={(ev, value) => this.handleInputChange(ev, value)}
+                                inputValue={autoCompleteInputValue}
+                                handleHomeEndKeys={true}
+                                filterSelectedOptions={true}
+                                fullWidth={true}
+                                renderInput={(params) => <TextField {...params} label="Ring every" variant="outlined" />}
+                            />
+                        </div>
+                        <div className={styles.buttonsContainer}>
+                            <button 
+                                className={`${styles.alertButton} ${styles.button} ${(this.props.showTimer) ? styles.hide : ''}`}
+                                onClick={(ev) => this.closeModal(ev, false)}>
+                                Cancel
+                            </button>
+                            <button className={`${styles.successButton} ${styles.button}`} onClick={this.closeSuccessModal}>Save changes</button>
+                        </div>
+                    </div>
+                )}
+            </SizeContextConsumer>
             </Modal>
         );
     }

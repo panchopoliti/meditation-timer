@@ -1,16 +1,17 @@
 import React from 'react';
-import { ThemeContextConsumer } from '../../ThemeContext.js';
+import { ThemeContextConsumer } from '../../Context/ToggleContexts.js';
+import styles from './css/ThemeToggler.module.scss';
 
 export default function ThemeToggler () {
     
     return (
         <ThemeContextConsumer>
             {
-                ({ theme, toggleTheme }) => (
-                    <div className='toggleButtonContainer'>
+                ({ theme, toggle }) => (
+                    <div className={styles.container}>
                         <button
-                            onClick={toggleTheme} 
-                            className={`${theme}ToggleButton`}>
+                            onClick={toggle} 
+                            className={styles[`${theme}Button`]}>
                         </button>
                     </div>
                 )

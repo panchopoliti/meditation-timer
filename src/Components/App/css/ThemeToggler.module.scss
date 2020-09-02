@@ -1,0 +1,31 @@
+@import '../../../css/themes';
+
+.container{
+
+    .button {
+        border: 0;
+        cursor: pointer;
+
+        &:before {
+            font-size: 3em;
+        }
+    }
+
+    .lightButton {
+        @extend .button;
+        background-color: $light-background;
+        
+        &:before {
+            content: "\1F31E";
+        }  
+    }
+
+    .darkButton {
+        @extend .button;
+        background-color: $dark-background;
+
+        &:before {
+            content: "\1F31C";
+        }
+    }
+}

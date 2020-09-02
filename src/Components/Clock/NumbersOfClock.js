@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './clock.scss';
 import { addLeadingZero } from './clock-functions.js';
 import { noop } from '../../generalFunctions.js';
-import { ThemeContextConsumer } from '../../ThemeContext.js';
+import { ThemeContextConsumer, SizeContextConsumer } from '../../Context/ToggleContexts.js';
+import styles from './css/NumbersOfClock.module.scss';
 
 const TIME_UNITS = {
     seconds: 'seconds',
@@ -88,8 +88,8 @@ class NumbersOfClock extends Component {
         }
 
         const spanElements = spanRefs.map(e => e.element)
-        const activeSpan = spanElements.find( elem => (elem.classList.contains('activeSpan')) ? elem : undefined);
-        const isSpanAvailableToBorder = (spanToBorder) ? spanToBorder.classList.contains('defaultSpanColor') : false;
+        const activeSpan = spanElements.find( elem => (elem.classList.contains(styles.activeSpan)) ? elem : undefined);
+        const isSpanAvailableToBorder = (spanToBorder) ? spanToBorder.classList.contains(styles.defaultSpanColor) : false;
 
         if ( (activeSpan && !isSpanAvailableToBorder) ||
         (activeSpan && !spanToBorder) ||
@@ -147,8 +147,8 @@ class NumbersOfClock extends Component {
             key={ref}
             ref={e => this[ref] = e}
             className={
-                `${(activeSpan === this[ref]) ? 'activeSpan' : ''} ${(focusOnInput && inputValueLength < inputLength) ?
-                'withoutInputValue' : (isCountDown) ? 'defaultSpanColor' : ''}`
+                `${(activeSpan === this[ref]) ? styles.activeSpan : ''} ${(focusOnInput && inputValueLength < inputLength) ?
+                styles.withoutInputValue : (isCountDown) ? styles.defaultSpanColor : ''}`
             } 
         >
             {value}
@@ -160,28 +160,33 @@ class NumbersOfClock extends Component {
         const secondsToDisplay = clockSpans.slice(4, 6);
 
         return (
-            <div 
-                className={`numbersContainer ${(!focusOnInput && isCountDown) ? 'clockDefined' : ''}`}
-                onClick={handleClockEvents}
-                onMouseDown={handleClockEvents}
-            >
-                <ThemeContextConsumer>
-                    {
-                        ({ theme }) => (
-                            <React.Fragment>
-                                <div className={`hoursContainer ${(hours === 0 && !focusOnInput) ? 'hide' : ''}`}>
-                                    <div className={`${theme}Numbers`}>{hoursToDisplay}</div>
-                                    <div className={`${theme}Numbers`}>:</div>
-                                </div>
-                                <div className={`${theme}Numbers`}>{minutesToDisplay}</div>
-                                <div className={`${theme}Numbers`}>:</div>
-                                <div className={`${theme}Numbers`}>{secondsToDisplay}</div>
-                            </React.Fragment>
-                        )
-                    }
-                </ThemeContextConsumer>
-
-            </div>
+            <SizeContextConsumer>
+                {({ size }) => (
+                    <div 
+                        className={
+                            `${styles.container} 
+                            ${(size === 'big') ? styles.bigContainer : ''}
+                            ${(!focusOnInput && isCountDown) ? styles.clockDefined : ''}`
+                        }
+                        onClick={handleClockEvents}
+                        onMouseDown={handleClockEvents}
+                    >
+                        <ThemeContextConsumer>
+                            {({ theme }) => (
+                                    <React.Fragment>
+                                        <div className={`${styles.hoursContainer} ${(hours === 0 && !focusOnInput) ? styles.hide : ''}`}>
+                                            <div className={styles[`${theme}Numbers`]}>{hoursToDisplay}</div>
+                                            <div className={styles[`${theme}Numbers`]}>:</div>
+                                        </div>
+                                        <div className={styles[`${theme}Numbers`]}>{minutesToDisplay}</div>
+                                        <div className={styles[`${theme}Numbers`]}>:</div>
+                                        <div className={styles[`${theme}Numbers`]}>{secondsToDisplay}</div>
+                                    </React.Fragment>
+                                )}
+                        </ThemeContextConsumer>
+                    </div>
+                )}
+            </SizeContextConsumer>
         );
     }
 }

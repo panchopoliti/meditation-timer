@@ -1,0 +1,107 @@
+@import './_fonts.scss';
+@import './_themes.scss';
+
+body {
+    font-family: $font-roboto;    
+}
+
+.hide {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.hoursInClock button {
+    width: 50%;
+}
+
+.mainContainer {
+    
+    .modalOverlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background: rgba(40,43,49,.8);
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        z-index: 1;
+    }
+    
+    .showOverlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+}
+
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+
+    .btnsContainer {
+        width: 100%;
+    
+        .buttons {
+            padding: 0.429em 1em;
+            color: #333333;
+            background-color: #dadada;
+            border: 1px solid #dadada;
+            font-family: $font-roboto;
+            font-size: 1.6em;
+            border-radius: 0;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            overflow: visible;
+    
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    
+        .btnSelected {
+            background-color: #007ad9;
+            border-color: #007ad9;
+            color: #ffffff;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+    }
+
+    .clock {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 25px;
+    }
+}
+
+.lightMainContainer {
+    background-color: $light-background;
+    @extend .mainContainer;
+}
+
+.darkMainContainer {
+    background-color: $dark-background;
+    @extend .mainContainer
+}
+
+@media screen and (max-width: 480px) {
+    
+    .appContainer {
+        width: 100%;
+
+        .appSubContainer {
+            width: 100%;
+        }
+
+        .sizeAppButtonContainer {
+            display: none;
+        } 
+    }
+}

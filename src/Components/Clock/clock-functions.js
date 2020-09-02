@@ -13,35 +13,6 @@ export const getClockMethod = (clockStarted, clockPaused, clockMethods, isTimerI
 
 export const checkIfTimerIsInZero = (isCountDown, seconds, minutes, hours) => (isCountDown && seconds === 0 && minutes === 0 && hours === 0);
 
-export const getSettingsForButton = (clockStarted, clockPaused, onClickMethods, isTimerInZero) => {
-
-    const clockMethod = getClockMethod(clockStarted, clockPaused, onClickMethods, isTimerInZero);
-
-    const btnInfo = {
-        onClick: clockMethod,
-    };
-
-    if (!clockStarted) {
-
-        btnInfo.text = 'Start';
-        btnInfo.className = `${(isTimerInZero) ? 'notAllow' : 'startButton'}`;
-
-
-    } else if (!clockPaused) {
-
-        btnInfo.text = 'Pause';
-        btnInfo.className = 'warningButton animateToLeft';
-
-    } else {
-
-        btnInfo.text = 'Continue';
-        btnInfo.className = 'successButton animateToLeft';
-    }
-
-    return btnInfo;
-  
-};
-
 export const setNextSecondAndNextMinute = (isCountDown, seconds, minutes, hours) => {
 
     let nextSecond = seconds;
