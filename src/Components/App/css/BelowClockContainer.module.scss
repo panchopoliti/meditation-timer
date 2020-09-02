@@ -1,3 +1,6 @@
+@import '../../../css/fonts';
+
+
 .hidden {
     visibility: hidden;
 }
@@ -9,11 +12,12 @@
 
     .containerInfo {
         font-size: 1em;
+        font-family: $font-poppins;
     }
 
     .lightContainerInfo {
         @extend .containerInfo;
-        color: #000;
+        color: #333;
     }
 
     .darkContainerInfo {
