@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/meditation-timer/static/css/main.4c4c63e7.chunk.css",
+    "main.css": "/meditation-timer/static/css/main.41f82cfd.chunk.css",
     "main.js": "/meditation-timer/static/js/main.d5115529.chunk.js",
     "main.js.map": "/meditation-timer/static/js/main.d5115529.chunk.js.map",
     "runtime-main.js": "/meditation-timer/static/js/runtime-main.29ab67ca.js",
@@ -8,9 +8,9 @@
     "static/js/2.6e1bf924.chunk.js": "/meditation-timer/static/js/2.6e1bf924.chunk.js",
     "static/js/2.6e1bf924.chunk.js.map": "/meditation-timer/static/js/2.6e1bf924.chunk.js.map",
     "index.html": "/meditation-timer/index.html",
-    "precache-manifest.c4eb220120e5486f18cdd93a25e1669d.js": "/meditation-timer/precache-manifest.c4eb220120e5486f18cdd93a25e1669d.js",
+    "precache-manifest.be5902d4f25f515de894ff72da77522b.js": "/meditation-timer/precache-manifest.be5902d4f25f515de894ff72da77522b.js",
     "service-worker.js": "/meditation-timer/service-worker.js",
-    "static/css/main.4c4c63e7.chunk.css.map": "/meditation-timer/static/css/main.4c4c63e7.chunk.css.map",
+    "static/css/main.41f82cfd.chunk.css.map": "/meditation-timer/static/css/main.41f82cfd.chunk.css.map",
     "static/js/2.6e1bf924.chunk.js.LICENSE.txt": "/meditation-timer/static/js/2.6e1bf924.chunk.js.LICENSE.txt",
     "static/media/bell4.mp3": "/meditation-timer/static/media/bell4.68b60366.mp3",
     "static/media/bowl-struck.mp3": "/meditation-timer/static/media/bowl-struck.2e1feb19.mp3",
@@ -30,7 +30,7 @@
   "entrypoints": [
     "static/js/runtime-main.29ab67ca.js",
     "static/js/2.6e1bf924.chunk.js",
-    "static/css/main.4c4c63e7.chunk.css",
+    "static/css/main.41f82cfd.chunk.css",
     "static/js/main.d5115529.chunk.js"
   ]
 }
