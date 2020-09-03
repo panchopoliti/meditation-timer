@@ -1,5 +1,25 @@
 @import '../../../css/fonts';
 
+@mixin successButtonColor() {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+@mixin startButtonColor() {
+    background-color: #007AD9;
+    color: #fff;
+}
+
+@mixin warningButtonColor() {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+@mixin dangerButtonColor() {
+    background-color: #ef5858;
+    color: #fff;
+}
+
 .hideBtn {
     font-size: 0em !important; 
     visibility: hidden;
@@ -11,19 +31,30 @@
 
     .button {
         padding: 0.429em 1em;
+        color: #fff;
         font-family: $font-roboto;
         font-size: 1.2em;
-        background-color: #dadada;
-        color: #333333;
-        border: 1px solid #dadada;
+        border: 0;  
         border-radius: 50px;
         transition: transform 1s;
         transition-delay: 0.1s;
         cursor: pointer;
+    }
 
-        &:focus {
-            outline: 0;
-        }
+    .startButton {
+        @include startButtonColor();
+    }
+
+    .successButton {
+        @include successButtonColor();
+    }
+
+    .warningButton {
+        @include warningButtonColor();
+    }
+
+    .dangerButton {
+        @include dangerButtonColor();
     }
 
     .animateToRight {
@@ -32,42 +63,6 @@
     
     .animateToLeft {
         transform: translate(-0.9em);
-    }
-    
-    .startButton {
-    
-        &:hover, &:focus {
-            color: #fff;
-            background-color: #337ab7;
-            border-color: #2e6da4;
-        }
-    }
-    
-    .successButton {
-    
-        &:hover, &:focus {
-            color: #fff;
-            background-color: #5cb85c;
-            border-color: #4cae4c;
-        }
-    }
-    
-    .warningButton {
-    
-        &:hover, &:focus {
-            background-color: #f0ad4e;
-            color: #fff;
-            border-color: #eea236;
-        }   
-    }
-    
-    .dangerButton {
-    
-        &:hover, &:focus {
-            background-color: #ef5858;
-            border-color: #d43f3a;
-            color: #fff;
-        }
     }
     
     .notAllow {
@@ -81,6 +76,47 @@
         
         .button {
             font-size: 2em;
+        }
+    }
+
+    .container {
+
+        .button {
+            background-color: #dadada;
+            color: #333333;
+            border: 1px solid #dadada;
+        }
+
+        .startButton {
+    
+            &:hover {
+                @include startButtonColor();
+                border: 1px solid #2e6da4;
+            }
+        }
+        
+        .successButton {
+        
+            &:hover {
+                @include successButtonColor();
+                border: 1px solid #4cae4c;
+            }
+        }
+        
+        .warningButton {
+        
+            &:hover {
+                @include warningButtonColor();
+                border: 1px solid #eea236;
+            }   
+        }
+        
+        .dangerButton {
+        
+            &:hover {
+                @include dangerButtonColor();
+                border: 1px solid #d43f3a;
+            }
         }
     }
 }

@@ -10,7 +10,6 @@ import {
   getMethodsForEnterPressing,
   makeTimeNumberOperations,
   getSecondsOutOfTime,
-  getClockMethod,
 } from './clock-functions.js';
 
 class Clock extends React.Component {
