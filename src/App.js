@@ -110,7 +110,7 @@ class App extends React.Component {
         document.removeEventListener('resume', this.handleVisibilityChange);
     }
  
-    componentDidUpdate(prevState) {
+    componentDidUpdate(prevProps, prevState) {
 
         const { modalClicked, modalSelectValue } = this.state;
 
