@@ -1,23 +1,40 @@
 @import '../../../css/fonts';
+@import '../../../css/colors';
 
 @mixin successButtonColor() {
-    background-color: #5cb85c;
+    background-color: $success;
     color: #fff;
+
+    &:active {
+        background-color: $success-darker;
+    }
 }
 
 @mixin startButtonColor() {
-    background-color: #007AD9;
+    background-color: $primary;
     color: #fff;
+
+    &:active {
+        background-color: $primary-darker;
+    }
 }
 
 @mixin warningButtonColor() {
-    background-color: #f0ad4e;
+    background-color: $warning;
     color: #fff;
+
+    &:active {
+        background-color: $warning-darker;
+    }
 }
 
 @mixin dangerButtonColor() {
-    background-color: #ef5858;
+    background-color: $danger;
     color: #fff;
+
+    &:active {
+        background-color: $danger-darker;
+    }
 }
 
 .hideBtn {
@@ -91,7 +108,7 @@
     
             &:hover {
                 @include startButtonColor();
-                border: 1px solid #2e6da4;
+                border: 1px solid $primary-dark;
             }
         }
         
@@ -99,7 +116,7 @@
         
             &:hover {
                 @include successButtonColor();
-                border: 1px solid #4cae4c;
+                border: 1px solid $success-dark;
             }
         }
         
@@ -107,7 +124,7 @@
         
             &:hover {
                 @include warningButtonColor();
-                border: 1px solid #eea236;
+                border: 1px solid $warning-dark;
             }   
         }
         
@@ -115,7 +132,7 @@
         
             &:hover {
                 @include dangerButtonColor();
-                border: 1px solid #d43f3a;
+                border: 1px solid $danger-dark;
             }
         }
     }
