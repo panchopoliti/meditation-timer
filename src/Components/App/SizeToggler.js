@@ -10,7 +10,7 @@ export default function SizeToggler() {
                 <SizeContextConsumer>
                     {({ size, toggle }) => (
                     <div className={`${styles.container} ${(size === 'big') ? styles.bigContainer : ''}`}>
-                        <button onClick={toggle} className={styles[`${theme}Button`]}>
+                        <button onClick={toggle} className={styles[`${theme}Button`]} aria-pressed={(size === 'big')}>
                             {(size === 'big') ? 'Make it Small' : 'Make it Big' }
                         </button>
                     </div>

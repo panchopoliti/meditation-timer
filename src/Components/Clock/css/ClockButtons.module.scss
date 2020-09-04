@@ -11,7 +11,7 @@
 }
 
 @mixin startButtonColor() {
-    background-color: $primary;
+    background-color: $primary-dark;
     color: #fff;
 
     &:active {

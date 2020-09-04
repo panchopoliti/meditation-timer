@@ -189,7 +189,7 @@ class App extends React.Component {
                                                             seconds={0}
                                                             hoursDisplayedInClock={hoursBeingDisplayed(true)}
                                                             timeInactivity={timeOfTabInactivity}
-                                                            ariaIdForContainer={'Clock 1'}
+                                                            ariaIdForContainer={'Clock-1'}
                                                         />
                                                     </div>
                                                     <div className={(showTimer) ? styles.hide : ''}>
@@ -202,7 +202,7 @@ class App extends React.Component {
                                                             ringEvery={numberToRing}
                                                             hoursDisplayedInClock={hoursBeingDisplayed(false)}
                                                             timeInactivity={timeOfTabInactivity}
-                                                            ariaIdForContainer={'Clock 2'}
+                                                            ariaIdForContainer={'Clock-2'}
                                                         />
                                                     </div>
                                                 </div>
@@ -211,6 +211,7 @@ class App extends React.Component {
                                                 showTimer={showTimer} 
                                                 numberToRing={numberToRing} 
                                                 handleModal={this.handleModal}
+                                                modalClicked={modalClicked}
                                             />
                                     </main>
                                 </div>

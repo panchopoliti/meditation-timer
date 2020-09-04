@@ -18,7 +18,7 @@ export default function TabButtons({ classNames, handleClick, buttonsText, amoun
                 tabIndex={0}
                 role='tab'
                 aria-selected={(activeTab === i)}
-                aria-controls={`clock${i + 1}`}
+                aria-controls={`Clock-${i + 1}`}
                 className={
                     `${styles.buttons}
                     ${(activeTab === i) ? styles.btnSelected : ''}

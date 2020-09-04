@@ -4,7 +4,7 @@ import SettingsSVG from '../../static/Logos/cog-solid.svg';
 import { ThemeContextConsumer, SizeContextConsumer } from '../../Context/ToggleContexts.js';
 import styles from './css/BelowClockContainer.module.scss';
 
-function BelowClockContainer({ showTimer, numberToRing, handleModal }) {
+function BelowClockContainer({ showTimer, numberToRing, handleModal, modalClicked }) {
 
     return (
         <ThemeContextConsumer>
@@ -16,7 +16,7 @@ function BelowClockContainer({ showTimer, numberToRing, handleModal }) {
                                 Ring every {numberToRing} {(numberToRing === 1) ? 'minute' : 'minutes'}
                             </span>
                             <div className={styles.settingsContainer}>
-                                <button className={styles.settingsLogoBtn} onClick={handleModal}>
+                                <button className={styles.settingsLogoBtn} onClick={handleModal} aria-pressed={modalClicked}>
                                     <figure>
                                         <img 
                                             src={SettingsSVG}
@@ -42,6 +42,7 @@ BelowClockContainer.propTypes = {
     showTimer: PropTypes.bool,
     numberToRing: PropTypes.number,
     handleModal: PropTypes.func,
+    modalClicked: PropTypes.bool,
 }
 
 export default BelowClockContainer;

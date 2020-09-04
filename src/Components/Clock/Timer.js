@@ -196,6 +196,7 @@ class Timer extends React.Component {
                     onChange={this.onInputChange}
                     className={styles.hiddenInput}
                     value={inputValue}
+                    aria-hidden="true"
                 />
             </Clock>
         );  

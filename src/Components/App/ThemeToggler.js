@@ -11,7 +11,10 @@ export default function ThemeToggler () {
                     <div className={styles.container}>
                         <button
                             onClick={toggle} 
-                            className={styles[`${theme}Button`]}>
+                            className={styles[`${theme}Button`]}
+                            aria-pressed={(theme === 'dark')}
+                            aria-label={'Toggle Theme of Website'}
+                        >
                         </button>
                     </div>
                 )
