@@ -1,11 +1,9 @@
-## URL
-https://panchopoliti.github.io/meditation-timer/
+# Meditation Timer and Stopwatch
+[Homepage](https://panchopoliti.github.io/meditation-timer/)
 
-## Stopwatch and Timer for Meditation
-
-I meditate everyday. I wanted to enjoy the possibility to have my own Timer and Stopwatch to meditate whenever I want, and in the future, track how much I meditated.
-
-I wanted to create a Progressive Web App that I could share with my meditators colleagues.
+## Summary
+Timer which rings with a selected bell when time is over, and Stopwatch which rings always after selected period. It does not work offline.
+Read more in [ROADMAP](https://github.com/panchopoliti/meditation-timer/blob/master/ROADMAP.md)
 
 ## Technologies used
 
