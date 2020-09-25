@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App.js';
 import 'focus-visible';
+import { register } from './serviceWorker.js';
 import { ThemeContextProvider, SizeContextProvider } from './Context/ToggleContexts.js';
 
 ReactDOM.render(
@@ -13,3 +14,5 @@ ReactDOM.render(
     </ThemeContextProvider>,
   document.getElementById('root')
 );
+
+register();
