@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6ea164e3ded65bae8772fc336f76872a",
+    "revision": "4b72fb744e95f98f2fc3b38435e72955",
     "url": "/meditation-timer/index.html"
   },
   {
-    "revision": "ccb55ab26d697af61c71",
+    "revision": "b52679b59a5ec181b8b2",
     "url": "/meditation-timer/static/css/main.c0da5f9d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meditation-timer/static/js/2.cc315177.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ccb55ab26d697af61c71",
-    "url": "/meditation-timer/static/js/main.c4be6eb7.chunk.js"
+    "revision": "b52679b59a5ec181b8b2",
+    "url": "/meditation-timer/static/js/main.31df4b85.chunk.js"
   },
   {
     "revision": "a7ecdbbd818f4a5ef28c",
