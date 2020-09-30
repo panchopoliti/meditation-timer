@@ -2,7 +2,7 @@
 [Homepage](https://panchopoliti.github.io/meditation-timer/)
 
 ## Summary
-Timer which rings with a selected bell when time is over, and Stopwatch which rings always after selected period. It does not work offline.
+Timer which rings with a selected bell when time is over, and Stopwatch which rings always after selected period.
 Read more in [ROADMAP](https://github.com/panchopoliti/meditation-timer/blob/master/ROADMAP.md)
 
 ## Setup

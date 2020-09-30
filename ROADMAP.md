@@ -9,7 +9,7 @@ Timer and Stopwatch with its offline functionality. User access to track usage. 
 
 ## Next Steps
 + Ask if user wants to leave of site when Timer or Stopwatch are running
-+ Custom Offline Service Worker and Push notifications
++ Push notifications
 + More "Native App" Friendly design
 + Write tests of Clock functionality
 + Login
